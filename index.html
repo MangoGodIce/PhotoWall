@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>照片墙</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="js/jquery.js"></script>
+</head>
+
+<body>
+    <ul class="polaroids">
+    </ul>
+
+    <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';clear:both;color:red">
+    </div>
+    <script>
+        function appendtxt(data) {
+            var txt1 = '<li><a ';
+            var titlename = 'title="img1"><img ';
+            var j = data + 1;
+            var filesourse = 'src="img/image-0' + j + '.jpg"></a></li>';
+            $("ul").append(txt1 + titlename + filesourse);
+        }
+
+        function appendvideo(data) {
+            var txt1 = '<div>';
+            var videoname = '<video controls="controls" poster="video/sy14-final.mp4"> ';
+            var j = data + 1;
+            var filesourse = '<source src="video/sy14-final.mp4" type="video/mp4"></video></div>';
+            $("ul").append(txt1 + videoname + filesourse);
+        }
+
+        function draw() {
+            var j = 0;
+            for (let i = 0; i < 9; i++) {
+                if (j == 0) {
+                    appendtxt(j);
+                    j = 1;
+                } else {
+                    appendtxt(j);
+                    j = 0;
+                }
+            }
+        }
+        draw();
+        appendvideo(1);
+        $(document).ready(function() {
+            $("a").click(function() {
+                var mystr = this.innerHTML.toString();
+                alert(mystr.substring(10));
+                var a = new Date();
+                console.log(a);
+            });
+            $("div").click(function() {
+                $(this).css({
+                    "height": "120 %",
+                    "width": "120 px",
+                    "z-index": 100
+                });
+            })
+        })
+    </script>
+</body>
+
+</html>
